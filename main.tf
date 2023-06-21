@@ -4,31 +4,22 @@ resource "yandex_vpc_network" "lab-net" {
 }
 
 resource "yandex_vpc_subnet" "lab-subnet-a" {
-  v4_cidr_blocks = ["10.2.0.0/24"]
+  v4_cidr_blocks = var.cidr_blocks[0]
   zone           = "ru-central1-a"
   network_id     = "${yandex_vpc_network.lab-net.id}" 
-  labels = {         
-    "project" = "slurm"
-    "env" = "lab" 
-  }
+  labels = var.labels
 }
 
 resource "yandex_vpc_subnet" "lab-subnet-b" {
-  v4_cidr_blocks = ["10.3.0.0/24"]
+  v4_cidr_blocks = var.cidr_blocks[1]
   zone           = "ru-central1-b"
   network_id     = "${yandex_vpc_network.lab-net.id}"
-  labels = {
-    "project" = "slurm"
-    "env" = "lab"
-  } 
+  labels = var.labels
 }
 
 resource "yandex_vpc_subnet" "lab-subnet-c" {
-  v4_cidr_blocks = ["10.4.0.0/24"]
+  v4_cidr_blocks = var.cidr_blocks[2]
   zone           = "ru-central1-c"
   network_id     = "${yandex_vpc_network.lab-net.id}"
-  labels = {
-    "project" = "slurm"
-    "env" = "lab"
-  } 
+  labels = var.labels
 }
