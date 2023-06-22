@@ -1,5 +1,5 @@
-#vm_name = "test"
-image_id = "fd8dgtuscndkp3jmdb82"
+vm_name = "slurm"
+image_id = "fd82tb3u07rkdkfte3dn"
 labels = {
   "project" = "slurm"
   "env"  = "lab"

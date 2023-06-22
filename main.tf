@@ -1,5 +1,4 @@
 resource "yandex_vpc_network" "lab-net" {
-  #name = local.prefix
   name = "${local.prefix}-lab-network"
 }
 

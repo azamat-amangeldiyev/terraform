@@ -17,9 +17,11 @@ resource "yandex_compute_instance" "test" {
 
   network_interface {
     subnet_id = "${yandex_vpc_subnet.lab-subnet-a.id}"
+    nat = true
   }
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
+    startup-script = "${file("create_user.sh")}"
   }
 }  
 
@@ -43,9 +45,10 @@ resource "yandex_compute_instance" "test-2" {
 
   network_interface {
     subnet_id = "${yandex_vpc_subnet.lab-subnet-b.id}"
+    nat = true
   }
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
   }
 } 
 resource "yandex_compute_instance" "test-3" {
@@ -68,8 +71,9 @@ resource "yandex_compute_instance" "test-3" {
 
   network_interface {
     subnet_id = "${yandex_vpc_subnet.lab-subnet-c.id}"
+    nat = true
   }
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
   }
 }   
