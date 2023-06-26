@@ -14,3 +14,8 @@ resources = {
     "memory" = "8"
     "disk" = "20"
 }
+nlb_healthcheck = {
+    "name"   = "test"
+    "port"   = 80
+    "path"   = "/"
+}

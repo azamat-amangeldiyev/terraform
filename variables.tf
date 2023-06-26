@@ -23,3 +23,12 @@ variable "cidr_blocks" {
   type        = list(list(string))
   description = "List of IPv4 cidr blocks for subnet"
 }
+
+variable "nlb_healthcheck" {
+  type        = object ({
+    name = string
+    port = number
+    path = string
+  } )
+  description = "variable to healthcheck"
+}

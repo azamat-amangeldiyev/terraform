@@ -9,3 +9,8 @@ output "private_ip-2" {
 output "private_ip-3" {
   value = yandex_compute_instance.test-3.network_interface.0.nat_ip_address
 }
+
+output "nlb_ip" {
+  value = yandex_lb_network_load_balancer.slurm-balancer.listener[*].external_address_spec.*.address
+}
+
