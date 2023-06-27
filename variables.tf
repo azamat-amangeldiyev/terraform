@@ -32,3 +32,7 @@ variable "nlb_healthcheck" {
   } )
   description = "variable to healthcheck"
 }
+
+variable "public_ssh_key_path" {
+  description = "Path to the public SSH key"
+}

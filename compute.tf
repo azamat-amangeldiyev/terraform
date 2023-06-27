@@ -20,14 +20,13 @@ resource "yandex_compute_instance" "test" {
     nat = true
   }
   metadata = {
-    ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = var.public_ssh_key_path != "" ? file(var.public_ssh_key_path) : tls_private_key.slurm-key.public_key_openssh
     startup-script = "${file("create_user.sh")}"
   }
 }  
 
 resource "yandex_compute_instance" "test-2" {
   name        = "${var.vm_name}-vm2"
-  #name        = "test-2"
   platform_id = "standard-v1"
   zone        = "ru-central1-b"
 
@@ -48,12 +47,12 @@ resource "yandex_compute_instance" "test-2" {
     nat = true
   }
   metadata = {
-    ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = var.public_ssh_key_path != "" ? file(var.public_ssh_key_path) : tls_private_key.slurm-key.public_key_openssh
+    #ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
   }
 } 
 resource "yandex_compute_instance" "test-3" {
   name        = "${var.vm_name}-vm3"
-  #name        = "test-3"
   platform_id = "standard-v1"
   zone        = "ru-central1-c"
 
@@ -74,6 +73,7 @@ resource "yandex_compute_instance" "test-3" {
     nat = true
   }
   metadata = {
-    ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = var.public_ssh_key_path != "" ? file(var.public_ssh_key_path) : tls_private_key.slurm-key.public_key_openssh
+    #ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
   }
 }   
