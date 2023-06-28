@@ -1,4 +1,5 @@
 vm_name = "slurm"
+vm_count = 3
 image_id = "fd82tb3u07rkdkfte3dn"
 labels = {
   "project" = "slurm"

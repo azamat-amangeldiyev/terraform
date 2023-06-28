@@ -34,5 +34,20 @@ variable "nlb_healthcheck" {
 }
 
 variable "public_ssh_key_path" {
+  type = string
   description = "Path to the public SSH key"
+}
+
+variable "az" {
+  type = list(string)
+  default = [
+    "ru-central1-a",
+    "ru-central1-b",
+    "ru-central1-c"
+  ]
+}
+
+variable "vm_count" {
+  type = number
+  description = "number of VM to create"
 }
