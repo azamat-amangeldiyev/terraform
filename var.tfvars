@@ -1,6 +1,6 @@
 vm_name = "slurm"
 vm_count = 3
-image_id = "fd82tb3u07rkdkfte3dn"
+image_family = "centos-7"
 labels = {
   "project" = "slurm"
   "env"  = "lab"

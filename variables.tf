@@ -2,10 +2,6 @@ variable "vm_name" {
   type        = string
   description = "Name of the virtual machine"
 }
-variable "image_id" {
-  type        = string
-  description = "image_id for virtual machine"
-}
 variable "labels" {
   type        = map(string)
   description = "Labels to add to resources"
@@ -50,4 +46,9 @@ variable "az" {
 variable "vm_count" {
   type = number
   description = "number of VM to create"
+}
+
+variable "image_family" {
+  type = string
+  description = "Image to create vm from"
 }

@@ -1,3 +1,7 @@
+data "yandex_compute_image" "this" {
+  family = var.image_family
+}
+
 resource "yandex_compute_instance" "test" {
   count = var.vm_count
   name        = "${var.vm_name}-${count.index}"
@@ -11,7 +15,7 @@ resource "yandex_compute_instance" "test" {
 
   boot_disk {
     initialize_params {
-      image_id = var.image_id
+      image_id = data.yandex_compute_image.this.id
       size = var.resources.disk
     }
   }
@@ -22,7 +26,6 @@ resource "yandex_compute_instance" "test" {
   }
   metadata = {
     ssh-keys = var.public_ssh_key_path != "" ? file(var.public_ssh_key_path) : tls_private_key.slurm-key[0].public_key_openssh
-    #ssh-keys = "yc-user:${file("~/.ssh/id_rsa.pub")}"
-    startup-script = "${file("create_user.sh")}"
+    ssh-keys = "yc-user:${file("~/.ssh/id_rsa.pub")}"
   }
 }  
