@@ -25,7 +25,20 @@ resource "yandex_compute_instance" "test" {
     nat = true
   }
   metadata = {
-    ssh-keys = var.public_ssh_key_path != "" ? file(var.public_ssh_key_path) : tls_private_key.slurm-key[0].public_key_openssh
-    ssh-keys = "yc-user:${file("~/.ssh/id_rsa.pub")}"
+    #ssh-keys = var.public_ssh_key_path != "" ? file(var.public_ssh_key_path) : tls_private_key.slurm-key[0].public_key_openssh
+    ssh-keys = "yc-user:${file("~/.ssh/id_ed25519.pub")}"
+     #user-data = "${file("cloud-init.yaml")}"
+  }
+
+  provisioner "remote-exec" {
+      inline = ["echo It is alive!"]
+
+      connection {
+        host        = self.network_interface.0.nat_ip_address
+        type        = "ssh"
+        user        = "centos"
+        # private_key = file("~/.ssh/id_rsa")
+        agent       = true
+      }
   }
 }  

@@ -8,7 +8,7 @@ output "private_ip-1" {
    value = flatten(yandex_lb_network_load_balancer.slurm-balancer.listener[*].external_address_spec.*.address).0
  }
  
-output "private_ssh_key" {
-  value = var.public_ssh_key_path != "" ? "" : tls_private_key.slurm-key[0].private_key_pem
-  sensitive = true
-}
+# output "private_ssh_key" {
+#   value = var.public_ssh_key_path != "" ? "" : tls_private_key.slurm-key[0].private_key_pem
+#   sensitive = true
+# }
