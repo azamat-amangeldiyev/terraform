@@ -31,14 +31,18 @@ resource "yandex_compute_instance" "test" {
   }
 
   provisioner "remote-exec" {
-      inline = ["echo It is alive!"]
+      inline = [
+        "sudo yum update -y",
+        "sudo yum upgrade -y",
+        "ping google.com -c 3"
+        ]
 
       connection {
         host        = self.network_interface.0.nat_ip_address
         type        = "ssh"
         user        = "centos"
-        # private_key = file("~/.ssh/id_rsa")
-        agent       = true
+        private_key = file("~/.ssh/id_ed25519")
+        agent       = false
       }
   }
 }  
