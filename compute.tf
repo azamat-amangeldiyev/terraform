@@ -45,4 +45,12 @@ resource "yandex_compute_instance" "test" {
         agent       = false
       }
   }
+  provisioner "local-exec" {
+    command = "ansible-playbook -u centos -i '${self.network_interface.0.nat_ip_address},' ansible/playbook.yml"
+
+    environment = {
+      ANSIBLE_HOST_KEY_CHECKING = "False"
+    }
+
+  }
 }  

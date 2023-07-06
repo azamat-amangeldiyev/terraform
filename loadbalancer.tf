@@ -19,7 +19,7 @@ resource "yandex_lb_network_load_balancer" "slurm-balancer" {
 
   listener {
     name = "${local.prefix}-listener"
-    port = 8080
+    port = 80
     external_address_spec {
       ip_version = "ipv4"
     }
